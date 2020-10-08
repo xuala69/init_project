@@ -66,6 +66,7 @@ class _BannerHomeState extends State<BannerHome> {
                                                   fit: BoxFit.cover,
                                                   width: 1000.0),
                                             ),
+                                            //asdasd
                                             Positioned(
                                               bottom: 0.0,
                                               left: 0.0,

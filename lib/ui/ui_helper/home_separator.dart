@@ -13,13 +13,16 @@ class HomeSeparator extends StatelessWidget {
           child: Container(
             width: SizeConfig.width,
             height: 1,
-            color: Colors.black38,
+            color: Theme.of(context).indicatorColor,
           ),
         ),
         SizedBox(
           width: 5,
         ),
-        Text(title),
+        Text(
+          title,
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
         SizedBox(
           width: 5,
         ),
@@ -27,7 +30,7 @@ class HomeSeparator extends StatelessWidget {
           child: Container(
             width: SizeConfig.width,
             height: 1,
-            color: Colors.black38,
+            color: Theme.of(context).indicatorColor,
           ),
         ),
       ],

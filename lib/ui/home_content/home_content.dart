@@ -30,15 +30,9 @@ class _HomeContentState extends State<HomeContent> {
             children: [
               FeaturedCategoriesPage(),
               BannerHome(),
-              GridSqCollections(
-                blockTitle: 'Most Selling',
-              ),
-              GridCategories(
-                blockTitle: 'Categories',
-              ),
-              GridSqCollections(
-                blockTitle: 'New Arrival',
-              ),
+              GridSqCollections(blockTitle: 'Most Selling'),
+              GridCategories(blockTitle: 'Categories'),
+              GridSqCollections(blockTitle: 'New Arrival'),
             ],
           ),
         ),

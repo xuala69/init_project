@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:init_project/ui/Store/store_main.dart';
 import 'package:init_project/ui/home_content/home_content.dart';
 import 'package:init_project/ui/profile/profile_root.dart';
 import 'package:init_project/ui/search_page/search_main.dart';
@@ -16,6 +17,7 @@ class _HomeMainState extends State<HomeMain> {
 
   static List<Widget> _widgetOptions = <Widget>[
     HomeContent(),
+    StoreMain(),
     SearchPage(),
     ProfileRoot(),
   ];
@@ -49,6 +51,11 @@ class _HomeMainState extends State<HomeMain> {
                       icon: Icons.home,
                       iconColor: Theme.of(context).iconTheme.color,
                       text: 'Home',
+                      textStyle: Theme.of(context).textTheme.headline6),
+                  GButton(
+                      icon: MdiIcons.viewGridPlusOutline,
+                      iconColor: Theme.of(context).iconTheme.color,
+                      text: 'Stores',
                       textStyle: Theme.of(context).textTheme.headline6),
                   GButton(
                     icon: Icons.search,

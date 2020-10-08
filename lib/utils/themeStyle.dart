@@ -7,18 +7,15 @@ import 'package:init_project/utils/size_config.dart';
 class Styles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
-      primarySwatch: Colors.blue,
+      primarySwatch: Colors.grey,
       //primary
       primaryColor: isDarkTheme ? Colors.grey[900] : Colors.grey[600],
       //background not so useful
       backgroundColor: isDarkTheme ? Colors.black : Colors.grey[200],
-      indicatorColor: isDarkTheme ? Color(0xff0E1D36) : Color(0xffCBDCF8),
+      indicatorColor: isDarkTheme ? Colors.white : Colors.black,
       //button not useful
       buttonColor: isDarkTheme ? Colors.red : Colors.deepOrange,
       hintColor: isDarkTheme ? Color(0xff280C0B) : Color(0xffEECED3),
-      highlightColor: isDarkTheme ? Color(0xff372901) : Color(0xffFCE192),
-      hoverColor: isDarkTheme ? Color(0xff3A3A3B) : Color(0xff4285F4),
-      focusColor: isDarkTheme ? Color(0xff0B2512) : Color(0xffA8DAB5),
       disabledColor: Colors.grey,
       textSelectionColor: isDarkTheme ? Colors.white : Colors.black,
       cardColor: isDarkTheme ? Colors.grey[800] : Colors.white,
@@ -44,8 +41,10 @@ class Styles {
                 //  fontSize: SizeConfig.textMultiplier * 1.6,
                 ),
             headline4: GoogleFonts.lato(
-                //  fontSize: SizeConfig.textMultiplier * 1.4,
-                ),
+              color: isDarkTheme ? Colors.grey[200] : Colors.grey[700],
+              fontSize: SizeConfig.textMultiplier * 1.4,
+              //  fontSize: SizeConfig.textMultiplier * 1.4,
+            ),
             headline5: GoogleFonts.lato(
                 //  fontSize: SizeConfig.textMultiplier * 1.2,
                 ),

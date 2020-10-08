@@ -23,12 +23,8 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('root '),
-        ),
         body: Container(
-          color: Colors.deepOrange,
-          child: Center(child: Text('data')),
-        ));
+      child: Center(child: CircularProgressIndicator()),
+    ));
   }
 }

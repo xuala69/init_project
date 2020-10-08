@@ -67,6 +67,7 @@ class _BannerHomeState extends State<BannerHome> {
                                                   width: 1000.0),
                                             ),
                                             //asdasd
+                                            //asdaaaaaaa
                                             Positioned(
                                               bottom: 0.0,
                                               left: 0.0,

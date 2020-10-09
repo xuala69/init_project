@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:init_project/ui/collection/collection.dart';
 import 'package:init_project/utils/size_config.dart';
 
 class BannerHome extends StatefulWidget {
@@ -52,7 +53,13 @@ class _BannerHomeState extends State<BannerHome> {
                     width: double.infinity,
                     child: CarouselSlider(
                         items: adsImageList
-                            .map((item) => Container(
+                            .map((item) => GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => CollectionPage()));
+                                  },
                                   child: Container(
                                     margin: EdgeInsets.all(5.0),
                                     child: ClipRRect(

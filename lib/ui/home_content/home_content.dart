@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:init_project/ui/CartPage/cartPage.dart';
 import 'package:init_project/ui/home_content/home_widgets/banner.dart';
 import 'package:init_project/ui/home_content/home_widgets/featured_categories.dart';
 import 'package:init_project/ui/home_content/home_widgets/grid_categories.dart';
@@ -19,7 +20,14 @@ class _HomeContentState extends State<HomeContent> {
         actions: [
           IconButton(
             icon: Icon(Icons.shopping_basket),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => CartPage(),
+                ),
+              );
+            },
           ),
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:init_project/ui/collection/collection.dart';
 import 'package:init_project/ui/ui_helper/home_separator.dart';
 import 'package:init_project/utils/size_config.dart';
 
@@ -80,7 +81,12 @@ class GridCategories extends StatelessWidget {
                           crossAxisCount: 3),
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => CollectionPage()));
+                          },
                           child: Container(
                             margin: EdgeInsets.all(5),
                             // color: Colors.red,

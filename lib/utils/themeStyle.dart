@@ -22,12 +22,14 @@ class Styles {
       canvasColor: isDarkTheme ? Colors.black : Colors.grey[50],
       brightness: isDarkTheme ? Brightness.dark : Brightness.light,
       buttonTheme: Theme.of(context).buttonTheme.copyWith(
-          colorScheme: isDarkTheme ? ColorScheme.dark() : ColorScheme.light()),
+            colorScheme: isDarkTheme ? ColorScheme.dark() : ColorScheme.light(),
+            buttonColor: isDarkTheme ? Colors.red : Colors.blue[200],
+          ),
       appBarTheme: AppBarTheme(
         elevation: 0.5,
       ),
       iconTheme: Theme.of(context).iconTheme.copyWith(
-            color: isDarkTheme ? Colors.black : Colors.black,
+            color: isDarkTheme ? Colors.white : Colors.black,
             size: 25,
           ),
       textTheme: Theme.of(context).textTheme.copyWith(

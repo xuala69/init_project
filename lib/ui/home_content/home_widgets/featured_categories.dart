@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:init_project/ui/collection/collection.dart';
 import 'package:init_project/utils/size_config.dart';
 
 class FeaturedCategoriesPage extends StatelessWidget {
@@ -64,40 +65,49 @@ class FeaturedCategoriesPage extends StatelessWidget {
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return Container(
-                        padding: EdgeInsets.all(7),
-                        width: SizeConfig.width * 0.22,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              flex: 7,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.redAccent,
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      _dataList[index]['image'],
+                      return GestureDetector(
+                        onTap: () {
+                          //CollectionPage
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => CollectionPage()));
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(7),
+                          width: SizeConfig.width * 0.22,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                flex: 7,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.redAccent,
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                        _dataList[index]['image'],
+                                      ),
+                                      fit: BoxFit.fill,
                                     ),
-                                    fit: BoxFit.fill,
                                   ),
+                                  /* child: Image.network(
+                                    _dataList[index]['image'],
+                                    fit: BoxFit.fill,
+                                  ), */
                                 ),
-                                /* child: Image.network(
-                                  _dataList[index]['image'],
-                                  fit: BoxFit.fill,
-                                ), */
                               ),
-                            ),
-                            Expanded(
-                              flex: 3,
-                              child: Text(
-                                _dataList[index]['title'],
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.subtitle1,
+                              Expanded(
+                                flex: 3,
+                                child: Text(
+                                  _dataList[index]['title'],
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.subtitle1,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       );
                     }),

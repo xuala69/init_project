@@ -4,4 +4,11 @@ class Constants {
   static const double paddingVertical = 6.0;
 
   static final Runes rupees = new Runes(' \u{20B9}');
+
+  static const String storeUrl = "http://127.0.0.1/opencart/";
+  static const String gqlUrl = "index.php?route=api/graphql/usage";
+
+  static const String demoUrlRest =
+      "https://opencart3-oauth.api.opencart-api.com/api/rest/";
+  static const String ocMerchantId = "123";
 }

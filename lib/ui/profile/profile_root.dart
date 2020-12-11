@@ -93,7 +93,7 @@ class _ProfileRootState extends State<ProfileRoot> {
                     );
                   },
                 ),
-                PersonDetailsBuilder(
+                /* PersonDetailsBuilder(
                   icon: MdiIcons.accountCogOutline,
                   title: 'Settings',
                   subTitle: 'Manage notifications & app settings',
@@ -105,58 +105,54 @@ class _ProfileRootState extends State<ProfileRoot> {
                       ),
                     );
                   },
-                ),
+                ), */
                 SizedBox(
                   height: 15,
                 ),
                 GeneralInfo(
-                    title: 'FAQ',
+                    title: 'About Us',
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (_) => GeneralInfoPage(
-                            title: 'FAQ',
-                            contents: 'FAQ',
+                            title: 'About Us',
                           ),
                         ),
                       );
                     }),
                 GeneralInfo(
-                    title: 'ABOUT US',
+                    title: 'Delivery Information',
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (_) => GeneralInfoPage(
-                            title: 'ABOUT US',
-                            contents: 'ABOUT US',
+                            title: 'Delivery Information',
                           ),
                         ),
                       );
                     }),
                 GeneralInfo(
-                    title: 'TERMS OF USE',
+                    title: 'Privacy Policy',
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (_) => GeneralInfoPage(
-                            title: 'TERMS OF USE',
-                            contents: 'TERMS OF USE',
+                            title: 'Privacy Policy',
                           ),
                         ),
                       );
                     }),
                 GeneralInfo(
-                    title: 'PRIVACY POLICY',
+                    title: 'Terms and Conditions',
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (_) => GeneralInfoPage(
-                            title: 'PRIVACY POLICY',
-                            contents: 'PRIVACY POLICY',
+                            title: 'Terms and Conditions',
                           ),
                         ),
                       );

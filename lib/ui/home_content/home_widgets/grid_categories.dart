@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:init_project/locator.dart';
+import 'package:init_project/services/api.dart';
 import 'package:init_project/ui/collection/collection.dart';
 import 'package:init_project/ui/ui_helper/home_separator.dart';
 import 'package:init_project/utils/size_config.dart';
@@ -7,6 +9,8 @@ class GridCategories extends StatelessWidget {
   // final _navi = locator<NavigationService>();
   final String blockTitle;
   GridCategories({@required this.blockTitle});
+
+  final _api = locator<Api>();
 
   Future getCategories() async {
     /* if(blockTitle==BlockTitle.baby){}
@@ -63,9 +67,10 @@ class GridCategories extends StatelessWidget {
               top: 5,
             ),
             child: FutureBuilder(
-                future: getCategories(),
+                future: _api.getAllStores(),
                 builder: (context, snap) {
                   if (snap.hasError) {
+                    print("error " + snap.error.toString());
                     return Container(
                       child: Center(
                         child: Text('Error please try again'),
@@ -73,6 +78,10 @@ class GridCategories extends StatelessWidget {
                     );
                   } else if (snap.hasData) {
                     List<Map> collections = snap.data;
+                    return Container(
+                      child: Text(" data " + collections.toString()),
+                    );
+                    //TODO  category lak dan tur
                     return GridView.builder(
                       itemCount: collections.length,
                       shrinkWrap: true,

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:http/http.dart' as http;
@@ -24,7 +23,6 @@ class Api {
     if (response.statusCode == 200) {
       var body = response.body;
       Map _bodyMap = jsonDecode(body);
-      print(_bodyMap);
       if (_bodyMap['success'] == 1) {
         await _secure.write("token", _bodyMap['data']['access_token']);
         await _secure.write(
@@ -47,7 +45,6 @@ class Api {
     if (response.statusCode == 200) {
       var body = response.body;
       Map _bodyMap = jsonDecode(body);
-      print(_bodyMap);
       if (_bodyMap['success'] == 1) {
         await _secure.write("token", _bodyMap['data']['access_token']);
         await _secure.write(
@@ -68,7 +65,6 @@ class Api {
         body: _body, headers: {"Authorization": "Bearer $_token"});
     if (response.statusCode == 200) {
       var responseBody = response.body;
-      print("response body " + responseBody.toString());
       Map _map = json.decode(responseBody);
       _secure.write("signedIn", "true");
       return _map;
@@ -98,7 +94,6 @@ class Api {
     });
     if (response.statusCode == 200) {
       var responseBody = response.body;
-      print("response body " + responseBody.toString());
       _secure.write("userId", "");
       _secure.write("token", "");
       return response;
@@ -114,7 +109,6 @@ class Api {
     });
     if (response.statusCode == 200) {
       var responseBody = response.body;
-      print("response body " + responseBody.toString());
       _secure.write("userId", "");
       _secure.write("token", "");
       return response;
@@ -130,7 +124,6 @@ class Api {
     });
     if (response.statusCode == 200) {
       var responseBody = response.body;
-      print("response body " + responseBody.toString());
       _secure.write("userId", "");
       _secure.write("token", "");
       return response;
@@ -141,6 +134,160 @@ class Api {
   //posts done
   //get starts
   //4c72fd9edf68e2cb5999a7d5c93a85f1
+
+  //get for 0auth
+  Future<String> getGeneralInfo(String id) async {
+    // await _secure.write("token", "0cb84d16c9d5d16fd66a67cdcafabd1cddc703dd");
+    var _token = await _secure.read("token");
+    var response = await client.get(demoUrl + "information/" + id, headers: {
+      "Authorization": "Bearer " + _token,
+    });
+    if (response.statusCode == 200) {
+      var body = response.body;
+      Map _bodyMap = jsonDecode(body);
+      if (_bodyMap['success'] == 1) {
+        return _bodyMap['data']["description"];
+      } else {
+        return null;
+      }
+    }
+    return null;
+    //customerorders/limit/{limit}/page/{page}slideshows/products/search/sony
+  }
+
+  Future<Map> getSlideshows() async {
+    // await _secure.write("token", "0cb84d16c9d5d16fd66a67cdcafabd1cddc703dd");
+    var _token = await _secure.read("token");
+    var response = await client.get(demoUrl + "slideshows", headers: {
+      "Authorization": "Bearer " + _token,
+    });
+    if (response.statusCode == 200) {
+      var body = response.body;
+      Map _bodyMap = jsonDecode(body);
+      if (_bodyMap['success'] == 1) {
+        List _ad = _bodyMap['data'];
+        return _ad[0];
+      } else {
+        return null;
+      }
+    }
+    return null;
+    //customerorders/limit/{limit}/page/{page}slideshows/categories
+  }
+
+  Future<dynamic> searchProductOnce(String name) async {
+    // await _secure.write("token", "0cb84d16c9d5d16fd66a67cdcafabd1cddc703dd");
+    var _token = await _secure.read("token");
+    var response =
+        await client.get(demoUrl + "products/search/" + name, headers: {
+      "Authorization": "Bearer " + _token,
+    });
+    if (response.statusCode == 200) {
+      var body = response.body;
+      Map _bodyMap = jsonDecode(body);
+      if (_bodyMap['success'] == 1) {
+        return _bodyMap['data'];
+      } else {
+        return null;
+      }
+    }
+    return null;
+    //customerorders/limit/{limit}/page/{page}slideshows/products/search/sony
+  }
+
+  Future<Map> getCategoriesHome() async {
+    var _token = await _secure.read("token");
+    var response = await client.get(demoUrl + "categories", headers: {
+      "Authorization": "Bearer " + _token,
+    });
+    if (response.statusCode == 200) {
+      var body = response.body;
+      Map _bodyMap = jsonDecode(body);
+      if (_bodyMap['success'] == 1) {
+        List _ad = _bodyMap['data'];
+        return _ad[0];
+      } else {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  Future<Map> getAllCategories() async {
+    var _token = await _secure.read("token");
+    var response = await client
+        .get(demoUrl + "categories/extended/limit/10/page/1", headers: {
+      "Authorization": "Bearer " + _token,
+    });
+    if (response.statusCode == 200) {
+      var body = response.body;
+      Map _bodyMap = jsonDecode(body);
+      if (_bodyMap['success'] == 1) {
+        List _ad = _bodyMap['data'];
+        return _ad[0];
+      } else {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  Future<Map> getAllStores() async {
+    var _token = await _secure.read("token");
+    var response = await client.get(demoUrl + "stores", headers: {
+      "Authorization": "Bearer " + _token,
+    });
+    if (response.statusCode == 200) {
+      var body = response.body;
+      Map _bodyMap = jsonDecode(body);
+      if (_bodyMap['success'] == 1) {
+        List _ad = _bodyMap['data'];
+        return _ad[0];
+      } else {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  Future<Map> getSpecialProducts() async {
+    var _token = await _secure.read("token");
+    var response = await client.get(demoUrl + "specials", headers: {
+      "Authorization": "Bearer " + _token,
+    });
+    if (response.statusCode == 200) {
+      var body = response.body;
+      Map _bodyMap = jsonDecode(body);
+      if (_bodyMap['success'] == 1) {
+        List _ad = _bodyMap['data'];
+        return _ad[0];
+      } else {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  Future<Map> getOrderHistory(int page) async {
+    // await _secure.write("token", "0cb84d16c9d5d16fd66a67cdcafabd1cddc703dd");
+    var _token = await _secure.read("token");
+    var response = await client.get(
+        demoUrl + "customerorders/limit/15/page/" + page.toString(),
+        headers: {
+          "Authorization": "Bearer " + _token,
+        });
+    if (response.statusCode == 200) {
+      var body = response.body;
+      Map _bodyMap = jsonDecode(body);
+      if (_bodyMap['success'] == 1) {
+        return _bodyMap['data'];
+      } else {
+        return null;
+      }
+    }
+    return null;
+    //customerorders/limit/{limit}/page/{page}
+  }
 
   //below are for simple auth
   Future getSignedInStatus() async {
@@ -234,18 +381,6 @@ class Api {
     return null;
   }
 
-  Future getCategoriesLimitandPage({int limit, int page}) async {
-    var response = await client
-        .get(demoUrl + "categories/extended/limit/$limit/page/$page", headers: {
-      "X-Oc-Merchant-Id": Constants.ocMerchantId,
-      "X-Oc-Session": await _secure.read("sessionId")
-    });
-    if (response.statusCode == 200) {
-      var responseBody = response.body;
-      return responseBody;
-    }
-    return null;
-  }
   //gets done
 }
 

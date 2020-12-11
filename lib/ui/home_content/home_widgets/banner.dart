@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:init_project/locator.dart';
+import 'package:init_project/models/bannerModel.dart';
+import 'package:init_project/services/api.dart';
 import 'package:init_project/ui/collection/collection.dart';
 import 'package:init_project/utils/size_config.dart';
 
@@ -30,13 +33,15 @@ class _BannerHomeState extends State<BannerHome> {
     return result;
   }
 
+  var _api = locator<Api>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.grey[300],
       height: SizeConfig.height * 0.2,
       child: FutureBuilder(
-          future: getBanners(),
+          future: _api.getSlideshows(),
           builder: (context, snap) {
             if (snap.hasError) {
               return Container(
@@ -45,63 +50,46 @@ class _BannerHomeState extends State<BannerHome> {
                 ),
               );
             } else if (snap.hasData) {
-              List<String> adsImageList = snap.data;
+              List data = snap.data["banners"];
+              List<BannerModel> bannerList = [];
+              data.forEach((element) {
+                BannerModel _banner = BannerModel.fromJson(element);
+                bannerList.add(_banner);
+              });
+              List<String> adsImageList = [];
               return Stack(
                 children: <Widget>[
                   Container(
                     color: Theme.of(context).backgroundColor,
                     width: double.infinity,
                     child: CarouselSlider(
-                        items: adsImageList
-                            .map((item) => GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => CollectionPage()));
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.all(5.0),
-                                    child: ClipRRect(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5.0)),
-                                        child: Stack(
-                                          children: <Widget>[
-                                            InkWell(
-                                              onTap: () {},
-                                              child: Image.network(item,
-                                                  fit: BoxFit.cover,
-                                                  width: 1000.0),
-                                            ),
-                                            //asdasd
-                                            //asdaaaaaaa
-                                            Positioned(
-                                              bottom: 0.0,
-                                              left: 0.0,
-                                              right: 0.0,
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  gradient: LinearGradient(
-                                                    colors: [
-                                                      Color.fromARGB(
-                                                          200, 0, 0, 0),
-                                                      Color.fromARGB(0, 0, 0, 0)
-                                                    ],
-                                                    begin:
-                                                        Alignment.bottomCenter,
-                                                    end: Alignment.topCenter,
-                                                  ),
-                                                ),
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 10.0,
-                                                    horizontal: 20.0),
-                                                child: Text(''),
-                                              ),
-                                            ),
-                                          ],
-                                        )),
-                                  ),
-                                ))
+                        items: bannerList
+                            .map(
+                              (item) => GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => CollectionPage()));
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.all(5.0),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5.0)),
+                                      child: Stack(
+                                        children: <Widget>[
+                                          InkWell(
+                                            onTap: () {},
+                                            child: Image.network(item.image,
+                                                fit: BoxFit.contain,
+                                                width: 1000.0),
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                              ),
+                            )
                             .toList(),
                         options: CarouselOptions(
                             autoPlay: true,

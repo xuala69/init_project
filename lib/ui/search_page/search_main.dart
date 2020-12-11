@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:init_project/locator.dart';
+import 'package:init_project/services/api.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -8,12 +10,21 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   TextEditingController _controller = TextEditingController();
   FocusNode _searchNode = FocusNode();
+  final _api = locator<Api>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Search product'),
         centerTitle: true,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          var result =
+              await _api.searchProductOnce("POCO M2(Slate Blue,64 GB)");
+          print(result.toString());
+        },
+        child: Icon(Icons.search),
       ),
       body: Container(
         child: Column(

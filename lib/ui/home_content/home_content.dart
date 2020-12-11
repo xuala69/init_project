@@ -28,9 +28,7 @@ class _HomeContentState extends State<HomeContent> {
     super.initState();
   }
 
-  void testApi() async {
-   
-  }
+  void testApi() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +49,6 @@ class _HomeContentState extends State<HomeContent> {
             },
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          testApi();
-        },
       ),
       body: Container(
         child: SingleChildScrollView(
